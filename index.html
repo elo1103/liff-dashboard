@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Risk Radar — 專案利潤預警系統</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== Navigation Bar ===== -->
+  <nav id="navbar">
+    <button id="nav-back" class="nav-btn hidden" aria-label="返回">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <h1 id="nav-title">Risk Radar</h1>
+    <div class="nav-spacer"></div>
+  </nav>
+
+  <!-- ===== Main Content ===== -->
+  <main id="app">
+
+    <!-- A) Home: Risk Radar -->
+    <section id="view-home">
+
+      <!-- A1: Latest Alert Card -->
+      <div id="latest-alert" class="card card-alert"></div>
+
+      <!-- A2: KPI Summary -->
+      <div id="kpi-section" class="kpi-grid"></div>
+
+      <!-- A3: Risk Project List -->
+      <h2 class="section-title">風險專案</h2>
+      <div id="project-list"></div>
+
+    </section>
+
+    <!-- B) Project Detail -->
+    <section id="view-detail" class="hidden"></section>
+
+  </main>
+
+  <!-- C) Assign PM Modal -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>指派 PM</h2>
+        <button id="modal-close" class="modal-close" aria-label="關閉">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="modal-project-name" class="modal-subtitle"></p>
+
+        <label class="field-label" for="select-pm">指派給</label>
+        <select id="select-pm" class="field-select">
+          <option value="">請選擇 PM</option>
+          <option value="PM A">PM A</option>
+          <option value="PM B">PM B</option>
+          <option value="PM C">PM C</option>
+        </select>
+
+        <label class="field-label" for="select-deadline">期限</label>
+        <select id="select-deadline" class="field-select">
+          <option value="">請選擇期限</option>
+          <option value="今天下班前">今天下班前</option>
+          <option value="明天中午">明天中午</option>
+          <option value="本週五">本週五</option>
+        </select>
+
+        <label class="field-label" for="input-note">備註（可選）</label>
+        <textarea id="input-note" class="field-textarea" rows="3" placeholder="輸入備註…"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-assign-submit" class="btn btn-primary btn-full">送出指派</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
