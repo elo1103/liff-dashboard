@@ -23,7 +23,7 @@
   <!-- ===== Main Content ===== -->
   <main id="app">
 
-    <!-- A) Home: 專案利潤預警系統 -->
+    <!-- A) Home -->
     <section id="view-home">
 
       <!-- A1: Latest Alert Card -->
@@ -81,7 +81,10 @@
   <!-- Toast -->
   <div id="toast" class="toast hidden"></div>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <!-- LINE LIFF SDK (must load before app.js) -->
+  <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+  <!-- App entry point (ESM module — imports data.js & supabase internally) -->
+  <script type="module" src="app.js"></script>
 </body>
 </html>

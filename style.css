@@ -633,6 +633,108 @@ section { animation: fadeIn 0.3s ease; }
 
 @keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(12px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
+/* --- Loading & Error States --- */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--divider);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error-msg {
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--red);
+  font-size: 14px;
+}
+
+.empty-msg {
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* --- Alert severity variants --- */
+.card-alert.alert-yellow {
+  background: linear-gradient(135deg, #fff 0%, var(--yellow-bg) 100%);
+  border-left-color: var(--yellow);
+}
+
+.alert-badge.severity-yellow { background: var(--yellow); }
+.alert-badge.severity-green  { background: var(--green); }
+
+/* --- Hours Progress Bar --- */
+.hours-section {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 16px;
+}
+
+.hours-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.hours-bar-wrap {
+  height: 8px;
+  background: var(--divider);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.hours-bar {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--blue);
+  transition: width 0.6s ease;
+}
+
+.hours-bar.overrun {
+  background: var(--red);
+}
+
+.hours-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* --- Dot inline (for alert history list) --- */
+.dot-inline {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.dot-inline.red    { background: var(--red); }
+.dot-inline.yellow { background: var(--yellow); }
+.dot-inline.green  { background: var(--green); }
+
 /* --- Utility --- */
 .text-red    { color: var(--red); }
 .text-yellow { color: var(--yellow); }
