@@ -32,7 +32,7 @@ function renderHome() {
   $home.classList.remove('hidden');
   $detail.classList.add('hidden');
   $navBack.classList.add('hidden');
-  $navTitle.textContent = 'Risk Radar';
+  $navTitle.textContent = '專案利潤預警系統';
 
   renderLatestAlert();
   renderKPI();
