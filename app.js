@@ -21,6 +21,7 @@ const $inputNote   = document.getElementById('input-note');
 const $btnSubmit   = document.getElementById('btn-assign-submit');
 const $modalClose  = document.getElementById('modal-close');
 const $toast       = document.getElementById('toast');
+const $suggestedActions = document.getElementById('suggested-actions-section');
 
 // Current state
 let currentAlertId = null;  // which alert is being assigned
@@ -36,6 +37,7 @@ function renderHome() {
 
   renderLatestAlert();
   renderKPI();
+  renderSuggestedActions();
   renderProjectList();
 }
 
@@ -110,6 +112,40 @@ function renderKPI() {
     <div class="kpi-card">
       <div class="kpi-value red">${highRisk}</div>
       <div class="kpi-label">高風險專案</div>
+    </div>
+  `;
+}
+
+// ---- A2.5: Suggested Actions (AI) ----
+
+function renderSuggestedActions() {
+  const alert = getLatestPendingAlert();
+  const project = alert ? getAlertProject(alert) : getTopRiskProjects(1)[0];
+  const hasRisk = project && getRiskLevel(project.forecastMarginPct) !== 'green';
+
+  if (!project || !hasRisk) {
+    $suggestedActions.innerHTML = `
+      <div class="card suggested-actions-card suggested-actions-empty">
+        <span class="suggested-actions-badge safe">AI 建議</span>
+        <p class="suggested-actions-summary">目前無高風險專案，無需特別行動。</p>
+      </div>
+    `;
+    return;
+  }
+
+  const level = getRiskLevel(project.forecastMarginPct);
+  const insight = project.aiInsight || project.riskReason;
+  const suggestions = project.suggestions || [];
+
+  $suggestedActions.innerHTML = `
+    <div class="card suggested-actions-card">
+      <span class="suggested-actions-badge ${level}">AI 建議</span>
+      <p class="suggested-actions-project">${project.name}</p>
+      <p class="suggested-actions-summary">${insight}</p>
+      <div class="suggested-actions-list">
+        ${suggestions.map(s => `<div class="suggested-action-item">${s}</div>`).join('')}
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="showDetail('${project.id}')">查看專案細節</button>
     </div>
   `;
 }
@@ -216,9 +252,12 @@ function showDetail(projectId) {
       `).join('')}
     </div>
 
-    <!-- Suggested Actions -->
+    <!-- Suggested Actions (AI) -->
     <div class="actions-section">
-      <div class="actions-title">建議動作</div>
+      <div class="actions-title">
+        <span class="actions-title-badge">AI 建議</span> 建議行動
+      </div>
+      ${project.aiInsight ? `<p class="actions-insight">${project.aiInsight}</p>` : ''}
       <div class="action-chips">
         ${project.suggestions.map(s => `<button class="chip" onclick="this.classList.toggle('selected')">${s}</button>`).join('')}
       </div>
