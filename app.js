@@ -241,6 +241,46 @@ function showDetail(projectId) {
       <div id="chart-area"></div>
     </div>
 
+    <!-- Hours Progress -->
+    <div class="hours-progress-container">
+      <div class="hours-progress-title">工時進度</div>
+      <div class="hours-progress-info">
+        <div class="hours-progress-item">
+          <div class="hours-progress-label">預估工時</div>
+          <div class="hours-progress-value">${project.estimatedHours || 0} 小時</div>
+        </div>
+        <div class="hours-progress-item">
+          <div class="hours-progress-label">實際工時</div>
+          <div class="hours-progress-value">${project.actualHours || 0} 小時</div>
+        </div>
+      </div>
+      ${(() => {
+        const estimated = project.estimatedHours || 1;
+        const actual = project.actualHours || 0;
+        const percentage = Math.round((actual / estimated) * 100);
+        const isAhead = actual < estimated;
+        const isBehind = actual > estimated;
+        const progressLevel = isAhead ? 'green' : isBehind ? (percentage > 120 ? 'red' : 'yellow') : 'green';
+        const progressColor = progressLevel === 'red' ? 'var(--red)' : progressLevel === 'yellow' ? 'var(--yellow)' : 'var(--green)';
+        const statusText = isAhead ? '超前' : isBehind ? '落後' : '正常';
+        const diffHours = Math.abs(actual - estimated);
+        const diffText = isAhead ? `節省 ${diffHours} 小時` : isBehind ? `超出 ${diffHours} 小時` : '符合預估';
+        const barWidth = Math.min(percentage, 100);
+        return `
+          <div class="hours-progress-bar-wrapper">
+            <div class="hours-progress-bar">
+              <div class="hours-progress-bar-fill" style="width: ${barWidth}%; background: ${progressColor};"></div>
+            </div>
+            <div class="hours-progress-stats">
+              <span class="hours-progress-percentage ${progressLevel}">${percentage}%</span>
+              <span class="hours-progress-status ${progressLevel}">${statusText}</span>
+            </div>
+            <div class="hours-progress-diff">${diffText}</div>
+          </div>
+        `;
+      })()}
+    </div>
+
     <!-- Risk Breakdown -->
     <div class="risk-breakdown">
       <div class="risk-breakdown-title">風險來源拆解</div>

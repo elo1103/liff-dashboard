@@ -29,6 +29,8 @@ const DB = {
       aiInsight: '除濕機與風管成本超支，建議從議價與工序調整著手，必要時可與業主協商變更追加。',
       suggestions: ['與供應商重新議價', '外包風管安裝工序', '與業主談變更追加'],
       trend: [21, 19, 16, 14, 11, 9],
+      estimatedHours: 320,
+      actualHours: 385,
     },
     {
       id: 'P002',
@@ -46,6 +48,8 @@ const DB = {
       aiInsight: '配管重工與配電追加導致毛利下滑，建議先與業主確認追加款，並優化施工順序與人力配置。',
       suggestions: ['與業主協商追加款', '調整配管施工順序', '增派配電師傅'],
       trend: [19, 17, 14, 11, 9, 7],
+      estimatedHours: 240,
+      actualHours: 295,
     },
     {
       id: 'P003',
@@ -63,6 +67,8 @@ const DB = {
       aiInsight: '銅管交期延遲造成工班閒置，建議建立備援供應商並調整工序，避免未來類似延誤。',
       suggestions: ['備用銅管供應商', '調整施工順序先做風管', '提前叫料'],
       trend: [21, 20, 19, 18, 16, 15],
+      estimatedHours: 180,
+      actualHours: 198,
     },
     {
       id: 'P004',
@@ -80,6 +86,8 @@ const DB = {
       aiInsight: '小案場工時與車程成本偏高，建議與其他案場併單施工或簡化控制規格以壓低成本。',
       suggestions: ['併入其他案場施工', '簡化控制線路', '與業主確認規格'],
       trend: [23, 22, 20, 19, 17, 16],
+      estimatedHours: 45,
+      actualHours: 52,
     },
     {
       id: 'P005',
@@ -97,6 +105,8 @@ const DB = {
       aiInsight: '目前進度與毛利表現良好，建議將議價與施工流程記錄為最佳實踐，並可提前安排驗收。',
       suggestions: ['維持現狀', '記錄最佳實踐', '提前申請驗收'],
       trend: [18, 18, 19, 20, 20, 21],
+      estimatedHours: 280,
+      actualHours: 252,
     },
     {
       id: 'P006',
@@ -114,6 +124,8 @@ const DB = {
       aiInsight: '材料與施工效率優於預期，建議維持現狀並記錄此案效率指標，可考慮提前請款以改善現金流。',
       suggestions: ['維持現狀', '記錄施工效率', '提前請款'],
       trend: [20, 20, 21, 21, 22, 22],
+      estimatedHours: 200,
+      actualHours: 186,
     },
   ],
 
